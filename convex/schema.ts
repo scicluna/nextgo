@@ -10,12 +10,20 @@ export default defineSchema({
     }),
     board: defineTable({
         id: v.string(),
-        playerBlack: v.id("users"),
-        playerWhite: v.id("users"),
+        whiteId: v.id("users"),
+        blackId: v.id("users"),    
         boardState: v.array(v.array(v.array(v.object({
             color: v.string(),
             ko: v.boolean(),
             turn: v.boolean(),
         })))),
+        captures: v.object({
+            white: v.number(),
+            black: v.number(),
+        }),
+        time: v.object({
+            white: v.number(),
+            black: v.number(),
+        }),
     })
 });
