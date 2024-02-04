@@ -15,7 +15,11 @@ export default defineSchema({
         boardState: v.array(v.array(v.array(v.object({
             color: v.string(),
             ko: v.boolean(),
-            turn: v.boolean(),
+            turn: v.number(),
+            coordinates: v.object({
+                x: v.string(),
+                y: v.number()
+            })
         })))),
         captures: v.object({
             white: v.number(),
