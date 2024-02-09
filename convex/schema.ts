@@ -2,32 +2,28 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-    users: defineTable({
-        id: v.string(),
+    user: defineTable({
         name: v.string(),
-        created_at: v.string(),
-        updated_at: v.string()
     }),
     board: defineTable({
-        id: v.string(),
-        whiteId: v.id("users"),
-        blackId: v.id("users"),    
-        boardState: v.array(v.array(v.array(v.object({
+        whiteId: v.id("user"),
+        blackId: v.id("user"),    
+        boardState: v.array(v.array(v.object({
             color: v.string(),
             ko: v.boolean(),
             turn: v.number(),
-            coordinates: v.object({
-                x: v.string(),
-                y: v.number()
-            })
-        })))),
+        }))),
         captures: v.object({
             white: v.number(),
             black: v.number(),
         }),
+        currentTurn: v.number(),
+        turnTimeStart: v.string(),
         time: v.object({
             white: v.number(),
+            //wbyo omi
             black: v.number(),
+            //bbyo omi
         }),
     })
 });
